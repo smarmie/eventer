@@ -1,0 +1,9 @@
+Flask
+Flask-Bcrypt
+Flask-HTTPAuth
+Flask-Migrate
+Flask-Restful
+Flask-Script
+Flask-SQLAlchemy
+DateTime
+mysql-connector-python-rf

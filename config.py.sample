@@ -1,0 +1,28 @@
+"""
+    config
+    ~~~~~~
+    Application-wide configurations.
+    Common to all environments (development|staging|production).
+    Place environment specific settings in config_env.py
+    You can put whatever you want here. The convention is to write configuration
+    variables in upper-case.
+"""
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+# Flask settings
+DEBUG = True
+SECRET_KEY = "development_key"
+CACHE_TIMEOUT = 60 * 60 * 15
+APP_NAME = "Eventer"
+APP_SYSTEM_ERROR_SUBJECT_LINE = APP_NAME + " system error"
+CSRF_ENABLED = False
+
+# Flask-SQLAlchemy settings
+SQLALCHEMY_DATABASE_URI = "sqlite:///db.sqlite"
+SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# user token validity in seconds
+TOKEN_VALIDITY = 86400

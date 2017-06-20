@@ -1,0 +1,4 @@
+-r common.txt
+flask-debugtoolbar
+pylint
+pytest
