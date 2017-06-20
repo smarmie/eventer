@@ -105,4 +105,3 @@ ENV/
 config.py
 config_dev.py
 config_prod.py
-
