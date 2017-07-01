@@ -28,7 +28,7 @@ class CRUDMixin(object):
         """Update specific fields of a record."""
         # Prevent changing ID of object
         kwargs.pop('id', None)
-        for attr, value in kwargs.iteritems():
+        for attr, value in kwargs.items():
             # Flask-RESTful makes everything None by default :/
             if value is not None:
                 setattr(self, attr, value)
@@ -70,7 +70,7 @@ class SurrogatePK(object):
         if id <= 0:
             raise ValueError('ID must not be negative or zero!')
         if any(
-                (isinstance(id, basestring) and id.isdigit(),
+                (isinstance(id, str) and id.isdigit(),
                  isinstance(id, (int, float))),
         ):
             return cls.query.get(int(id))

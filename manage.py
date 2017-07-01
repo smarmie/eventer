@@ -41,7 +41,7 @@ def init():
         Initialize the database.
         Amongst other things, create the admin user
     """
-    username = raw_input('Enter admin username: ')
+    username = input('Enter admin username: ')
     password = getpass('Input password for the {} user: '.format(username))
     user = User.create(username=username,
                        password=password,

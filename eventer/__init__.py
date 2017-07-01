@@ -20,13 +20,12 @@ if os.getenv('FLASK_ENV') == 'prod':
 else:
     config_file = '../config_dev.py'
 
+
 def create_app(config_filename=config_file):
-    '''
+    """
         An application factory, as explained here:
         http://flask.pocoo.org/docs/patterns/appfactories/
-
-        :param config_object: The configuration object to use.
-    '''
+    """
     app = Flask(__name__)
     app.config.from_pyfile(config_filename)
     register_extensions(app)
