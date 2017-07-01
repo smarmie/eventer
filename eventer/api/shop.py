@@ -9,7 +9,9 @@ from flask import abort
 from flask_restful import Resource, reqparse, marshal_with, fields
 
 from eventer.api import api, meta_fields
+from eventer.api.auth import admin_only
 from eventer.models.shop import Shop
+from eventer.extensions import auth
 
 
 shop_parser = reqparse.RequestParser()
@@ -38,7 +40,6 @@ class ShopResource(Resource):
         """
             Return shop from id or name
         """
-        shop = None
         if name is not None:
             shop = Shop.get_by_name(name)
         else:
@@ -62,7 +63,16 @@ class ShopCollectionResource(Resource):
         shops = Shop.query
         return shops
 
+    @auth.login_required
+    @admin_only
+    @marshal_with(shop_fields)
+    def post(self):
+        """
+            Create multiple shops
+        """
+        shop = Shop.create(**shop_parser.parse_args())
+        return shop, 201
+
 
 api.add_resource(ShopResource, '/v1/shop/<name>', '/v1/shop/<int:shop_id>')
 api.add_resource(ShopCollectionResource, '/v1/shops')
-
