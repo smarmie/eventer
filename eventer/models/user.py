@@ -21,6 +21,7 @@ from eventer.database import (
     SurrogatePK,
 )
 from eventer.extensions import crypt
+from flask import current_app
 
 
 class User(SurrogatePK, Model):
@@ -92,8 +93,7 @@ class User(SurrogatePK, Model):
         """
             Generate the authorization token
         """
-        # TODO: token = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
-        token = Serializer('SECRET_KEY', expires_in=expiration)
+        token = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)
         return token.dumps({'id': self.id})
 
     @staticmethod
