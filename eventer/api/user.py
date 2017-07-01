@@ -38,7 +38,7 @@ class UserResource(Resource):
     """
         User api endpoints
     """
-    @auth.login_required
+    # @auth.login_required
     @marshal_with(user_fields)
     def get(self, user_id=None, username=None):
         """
